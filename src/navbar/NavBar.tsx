@@ -36,9 +36,12 @@ class Navbar extends PureComponent<Props, State> {
 	render(): ReactNode {
 		return (
 			<Router>
-				<nav className={'navbar'}>
-					<Link className='navel' to='/'>Home</Link>
-					<Link className='navel' to='/about'>About</Link>
+				<nav>
+					<div className={'navbar'}>
+						<Link className='navel' to='/'>Home</Link>
+						<Link className='navel' to='/about'>About</Link>
+					</div>
+					<div className={'login'} />
 				</nav>
 
 

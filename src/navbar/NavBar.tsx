@@ -1,5 +1,10 @@
 import React, { PureComponent, ReactNode } from 'react'
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import './NavBar.sass'
+
+import Index from '../screens/index'
+import About from '../screens/about'
+
 
 
 interface Props {}
@@ -30,11 +35,17 @@ class Navbar extends PureComponent<Props, State> {
 
 	render(): ReactNode {
 		return (
-			<div className={'navbar'}>
-				{this.state.elements.map(el => 
-					<a className={'navel'} href={''+el.url}>{el.name}</a>
-				)}
-			</div>
+			<Router>
+				<nav className={'navbar'}>
+					<Link className='navel' to='/'>Home</Link>
+					<Link className='navel' to='/about'>About</Link>
+				</nav>
+
+
+				<Route path="/" exact component={Index} />
+				<Route path="/about" component={About} />
+
+			</Router>		
 		)
 	}
 }

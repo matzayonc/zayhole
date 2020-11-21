@@ -1,6 +1,8 @@
 import * as React from "react";
-import NavBar from './navbar/NavBar'
+
 import './style.sass'
+
+import Navbar from "./navbar/NavBar";
 
 
 export interface AppProps {
@@ -9,5 +11,5 @@ export interface AppProps {
 }
 
 export const App = (props: AppProps) => (
-	<NavBar/>
+	<Navbar/>
 )

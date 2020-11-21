@@ -1,4 +1,7 @@
 import * as React from "react";
+import NavBar from './navbar/NavBar'
+import './style.sass'
+
 
 export interface AppProps {
 	who: string;
@@ -6,7 +9,5 @@ export interface AppProps {
 }
 
 export const App = (props: AppProps) => (
-	<h1>
-		Hello {props.who}! Welcome to {props.where}!
-	</h1>
+	<NavBar/>
 )

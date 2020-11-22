@@ -2,9 +2,9 @@ import React, { PureComponent, ReactNode } from 'react'
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom'
 import './NavBar.sass'
 
-import Index from '../screens/index'
-import About from '../screens/about'
-
+import Index from '../screens/Index'
+import About from '../screens/About'
+import LoginPopup from './LoginPopup'
 
 
 interface Props {}
@@ -37,11 +37,12 @@ class Navbar extends PureComponent<Props, State> {
 		return (
 			<Router>
 				<nav>
-					<div className={'navbar'}>
+					<div className={'bar-links'}>
 						<Link className='navel' to='/'>Home</Link>
 						<Link className='navel' to='/about'>About</Link>
 					</div>
-					<div className={'login'} />
+					
+					<LoginPopup>Login</LoginPopup>
 				</nav>
 
 

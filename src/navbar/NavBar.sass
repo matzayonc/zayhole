@@ -1,25 +1,38 @@
-$primaryColor: rgb(15, 21, 32)
-$hoverColor: rgb(12, 31, 66)
-$textColor: rgb(194, 194, 194)
+@import './Vars'
     
-.navbar
+nav
     background-color: $primaryColor
     display: flex
-    height: 30px
+    height: $barHeight
+    line-height: $barHeight
     font-size: 18px
-    line-height: 30px
+    cursor: pointer 
+    user-select: none
+    
 
-    .navel
-        text-align: center
-        text-decoration: none
+    .login-toggle
+        flex: 0
         color: $textColor
-
-        flex: 1
-
+        width: 70px
+        text-align: center
 
         &:hover
             background-color: $hoverColor
+            
 
 
 
+    .bar-links
+        flex: 1
+        display: flex
 
+        .navel
+            flex: 1
+            text-align: center
+            text-decoration: none
+            color: $textColor
+
+
+
+            &:hover
+                background-color: $hoverColor

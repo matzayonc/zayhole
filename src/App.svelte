@@ -4,22 +4,27 @@
     import Main from './routes/Main.svelte'
     import About from './routes/About.svelte'
 
+	function login(login: string, password: string){
+		console.log('tried to login')
+		return false
+	}
 
 </script>
+
+
+<svelte:head>
+	<title>Zayhole</title>
+</svelte:head>
+
+<Router>
+	<Navbar loginCallback={login}/>
+	<Route path="/about" component="{About}" />
+	<Route path="/" component="{Main}" />
+</Router>
+
 
 <style lang="sass">
 	:global(body)
 		margin: 0
 		padding: 0
 </style>
-
-<svelte:head>
-	<title>Zayhole</title>
-</svelte:head>
-
-
-<Router>
-	<Navbar/>
-	<Route path="/about" component="{About}" />
-	<Route path="/" component="{Main}" />
-</Router>

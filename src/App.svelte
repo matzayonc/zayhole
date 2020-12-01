@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Navbar from './comp/Navbar.svelte'
-	import { Router, Link, Route } from "svelte-routing"
+	import { Router, Route } from "svelte-routing"
     import Main from './routes/Main.svelte'
     import About from './routes/About.svelte'
 

@@ -1,5 +1,6 @@
 <script>
-	import { Router, Link, Route } from "svelte-routing"
+	import { Link } from "svelte-routing"
+import Login from "./Login.svelte";
 
 </script>
 <style lang="sass">
@@ -35,6 +36,7 @@
         <Link to="/">Home</Link>
         <Link to="about">About</Link>
     </div>
+    <Login text='Login'/>
 
 
 </nav>

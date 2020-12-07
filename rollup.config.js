@@ -6,6 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 import sveltePreprocess from 'svelte-preprocess';
 import typescript from '@rollup/plugin-typescript';
 import css from 'rollup-plugin-css-only';
+import json from '@rollup/plugin-json'
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -60,6 +61,7 @@ export default {
 		// some cases you'll need additional configuration -
 		// consult the documentation for details:
 		// https://github.com/rollup/plugins/tree/master/packages/commonjs
+		
 		resolve({
 			browser: true,
 			dedupe: ['svelte']
@@ -80,7 +82,11 @@ export default {
 
 		// If we're building for production (npm run build
 		// instead of npm run dev), minify
-		production && terser()
+		production && terser(),
+
+		json({
+			compact: true
+		  })
 	],
 	watch: {
 		clearScreen: false

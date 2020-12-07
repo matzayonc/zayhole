@@ -1,6 +1,9 @@
 <script lang='ts'>
+    import { Link } from 'svelte-routing'
     export let text = 'Login'
     export let callback: (login: string, password: string) => boolean
+    import {server} from '../data.json'
+
 
     interface loginData{
         login: string,
@@ -23,6 +26,7 @@
 
         firstTry = callback(login, passwd)
 
+
     }
 </script>
 
@@ -33,7 +37,8 @@
     <div id='login-popup'>
         <h2>Login</h2>
         <input bind:value={data.login} type="text"/> <br/>
-        <input bind:value={data.passwd} type="text" class={firstTry ? '' : 'wrong'}/> <br/>
+        <input bind:value={data.passwd} type="password" class={firstTry ? '' : 'wrong'}/> <br/>
+        <Link to='about'>Register</Link>
         <button on:click={check}>Login</button>
     </div>     
 {/if}
@@ -49,6 +54,7 @@
         color: $textColor
 
     #login-popup
+        margin-left: calc(50vw - 240px)
         position: absolute
         top: 100px
         left: 100px
@@ -75,6 +81,7 @@
 
         button
             float: right
+            border-radius: 5px
             padding: 2px
             border-width: 0
             color: $textColor

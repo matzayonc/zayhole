@@ -42,6 +42,8 @@ export default {
 	},
 	plugins: [
 		svelte({
+			emitCss: false,
+			css: true,
 			preprocess: sveltePreprocess({
 				defaults: {
 					script: 'ts',
@@ -55,8 +57,7 @@ export default {
 		}),
 		// we'll extract any component CSS out into
 		// a separate file - better for performance
-		css({ output: 'custom.css' }),
-
+		
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In
 		// some cases you'll need additional configuration -
@@ -68,19 +69,20 @@ export default {
 			dedupe: ['svelte']
 		}),
 		commonjs(),
-
+		
 		postcss({
-            extract: true,
+			extract: true,
             minimize: true,
             use: [
-                ['sass', {
-                includePaths: [
-                    './src/theme',
-                    './node_modules'
-                ]
+				['sass', {
+					includePaths: [
+						'./src/theme',
+						'./node_modules'
+					]
                 }]
             ]
         }),
+		css({ output: 'bundle.css' }),
 		typescript({
 			sourceMap: !production,
 			inlineSources: !production

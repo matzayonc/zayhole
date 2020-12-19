@@ -14,6 +14,7 @@
 
 <svelte:head>
 	<title>Zayhole</title>
+	
 </svelte:head>
 
 <Router>

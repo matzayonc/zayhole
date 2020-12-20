@@ -18,9 +18,11 @@
 
 <nav>
     <TabBar tabs={tabs.map(i=>i[0])} let:tab bind:active>
-        <Link to={tabs.find(i=>i[0]==tab)[1]}>
-            <Tab {tab}><Label>{tab}</Label></Tab>
-        </Link>
+        <Tab {tab}>
+            <Label>
+                <Link to={tabs.find(i=>i[0]==tab)[1]}>{tab}</Link>
+            </Label>
+        </Tab>
   </TabBar>
 </nav>
 

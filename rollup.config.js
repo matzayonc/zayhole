@@ -43,7 +43,6 @@ export default {
 	plugins: [
 		svelte({
 			emitCss: false,
-			css: true,
 			preprocess: sveltePreprocess({
 				defaults: {
 					script: 'ts',
@@ -76,7 +75,7 @@ export default {
             use: [
 				['sass', {
 					includePaths: [
-						'./src/theme',
+						'./src/style',
 						'./node_modules'
 					]
                 }]

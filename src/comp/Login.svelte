@@ -13,7 +13,7 @@
     let data = {login: '', passwd: ''}
     
     let firstTry = true
-    let visible = true
+    let visible = false
 
     function check(){
         let {login, passwd} = data

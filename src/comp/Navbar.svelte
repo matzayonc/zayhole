@@ -2,44 +2,30 @@
 	import { Link } from 'svelte-routing'
     import Login from './Login.svelte';
     export let loginCallback: (login: string, password: string) => boolean
+    import Tab, {Icon, Label} from '@smui/tab';
+    import TabBar from '@smui/tab-bar'
+
+    let tabs: [string, string][] = [
+        ['Home', '/'],
+        ['About', '/about'],
+        ['Test', '/test']
+    ]
+    console.log(location)
+    $:active = tabs.find(i=>i[1]==location.pathname)[0]
 
 </script>
 
 
 <nav>
-    <div class='links'>
-        <Link to='/'>Home</Link>
-        <Link to='about'>About</Link>
-    </div>
-    <Login callback={loginCallback} text='Login'/>
-
-
+    <TabBar tabs={tabs.map(i=>i[0])} let:tab bind:active>
+        <Link to={tabs.find(i=>i[0]==tab)[1]}>
+            <Tab {tab}><Label>{tab}</Label></Tab>
+        </Link>
+  </TabBar>
 </nav>
 
 
-<style lang='sass'>
-    @import '../style/Vars'
-    
-    nav
-        background-color: $primaryColor
-        display: flex
-        height: $barHeight
-        line-height: $barHeight
-        font-size: 18px
-        cursor: pointer 
-        user-select: none    
-    
-        .links
-            flex: 1
-            display: flex
-    
-            :global(a)
-                flex: 1
-                text-align: center
-                text-decoration: none
-                color: $textColor
 
-                &:hover
-                    background-color: $hoverColor
-    
-</style>
+
+
+

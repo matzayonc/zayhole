@@ -18,7 +18,7 @@
 </svelte:head>
 
 <Router>
-	<Navbar loginCallback={login}/>
+	<Navbar/>
 	<Route path="/about" component="{About}" />
 	<Route path="/" component="{Main}" />
 </Router>

@@ -14,12 +14,7 @@
     <Card style='grid-column: 1 / 2'><Content>AAA</Content></Card>
     <Card><Content>AAA</Content></Card>
     <Card style="width: 320px;">
-        <Media class="card-media-16x9" aspectRatio="16x9" >
-            <video>
-                <source src="/ss.mp4"/>
-                <track kind="captions"/>
-            </video>
-        </Media>
+
         <Content style="color: #888;">
           Here's some gray text down here.
         </Content>

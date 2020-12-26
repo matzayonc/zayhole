@@ -1,18 +1,16 @@
 <script lang='ts'>
-    export let loginCallback: (login: string, password: string) => boolean
 
-	import { navigate  } from 'svelte-routing'
-    import Tab, {Label} from '@smui/tab';
-    import TabBar from '@smui/tab-bar'
-    import IconButton from '@smui/icon-button'
-    import Dialog, {Title, Content, Actions, InitialFocus} from '@smui/dialog';
-    import Textfield, {Input, Textarea} from '@smui/textfield';
-    import HelperText from '@smui/textfield/helper-text/index';
-    import Button from '@smui/button';
+import { navigate  } from 'svelte-routing'
+import Tab, {Label} from '@smui/tab'
+import TabBar from '@smui/tab-bar'
+import IconButton from '@smui/icon-button'
+import Dialog, {Title, Content} from '@smui/dialog'
+import Textfield from '@smui/textfield'
+import HelperText from '@smui/textfield/helper-text/index'
+import Button from '@smui/button'
 
-    import {login} from '../modules/login'
+import {check, login} from '../modules/login'
 
-    loginCallback
 
     let tabs: [string, string][] = [
         ['Home', '/'],
@@ -20,13 +18,30 @@
         ['Test', '/test']
     ]
 
-    
+
+
     let active = tabs.find(i=>i[1]==location.pathname)[0]    
     $: if(active != tabs.find(i=>i[1]==location.pathname)[0])
     navigate(tabs.find(i=>i[0]==active)[1], { replace: true })
     
     let loginDialog, loginValue = ''
     let passValue = ''
+
+    let valid = {login: true, password: true}
+
+    async function loginButton(){
+      valid = check(loginValue, passValue)
+      if(valid.login == true == valid.password){
+        if(await login(loginValue, passValue)){
+          loginDialog.close()
+        }
+        else{
+          valid.password = false
+          passValue = ''
+        }
+      }
+    }
+    
 </script>
 
 
@@ -37,22 +52,18 @@
     <IconButton class='material-icons' on:click={loginDialog.open()}>login</IconButton>
 </nav>
 
-<Dialog bind:this={loginDialog} aria-labelledby="simple-title" aria-describedby="simple-content">
-    <Title id="simple-title">Dialog Title</Title>
-    <Content id="simple-content">
-      <Textfield bind:value={loginValue} label="Login" fullwidth dense />
+<Dialog bind:this={loginDialog}>
+    <Title>Login</Title>
+    <Content>
+      <Textfield bind:value={loginValue} label="Login" fullwidth dense invalid={!valid.login}/>
       <HelperText>Podaj Login</HelperText>      
-      <Textfield type='password' bind:value={passValue} label="Hasło" fullwidth dense/>
-      <HelperText>Wpisz hasło</HelperText>
-    </Content>
-    
-
-    <Actions>
-      <Button on:click={()=>login(loginValue, passValue)}>
-        <Label>Zaloguj</Label>
+      <Textfield type='password' bind:value={passValue} label="Hasło" fullwidth dense invalid={!valid.password}/>
+      <HelperText>Wpisz hasło</HelperText>     
+      
+      <Button style='float:right' on:click={loginButton}>
+        <Label>Login</Label>
       </Button>
-
-    </Actions>
+    </Content>
   </Dialog>
 
 

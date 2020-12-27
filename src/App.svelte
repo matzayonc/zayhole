@@ -1,8 +1,9 @@
 <script lang="ts">
-	import Navbar from './comp/Navbar.svelte'
-	import { Router, Route } from "svelte-routing"
-    import Main from './routes/Main.svelte'
-    import About from './routes/About.svelte'
+import Navbar from './comp/Navbar.svelte'
+import { Router, Route } from "svelte-routing"
+import Main from './routes/Main.svelte'
+import About from './routes/About.svelte'
+import Upload from './routes/Upload.svelte';
 
 	function login(login: string, password: string){
 		console.log('tried to login')
@@ -20,6 +21,7 @@
 <Router>
 	<Navbar/>
 	<Route path="/about" component="{About}" />
+	<Route path="/upload" component="{Upload}" />
 	<Route path="/" component="{Main}" />
 </Router>
 

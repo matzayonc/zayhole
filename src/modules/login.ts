@@ -6,7 +6,7 @@ interface Check {
 }
 
 
-export async function login(login:string, passwd:string):boolean{
+export async function login(login:string, passwd:string):Promise<boolean>{
     const data = { name: login, passwd: passwd }
     let answer
     console.log('sending')

@@ -3,7 +3,7 @@
     location = location
 
     import Button from '@smui/button'
-    import Card, {Content, PrimaryAction, Media, MediaContent, Actions, ActionButtons, ActionIcons} from '@smui/card';
+    import Card, {Content} from '@smui/card';
 
 </script>
 

@@ -1,8 +1,11 @@
 export default async function(file:File):Promise<boolean>{ 
-	console.log(file)
+	console.log(file.name)
+	let arr = file.name.split('.')
+	const ext = arr[arr.length - 1]
+
 	let res = {success: undefined}
 	try {
-		let raw  = await fetch('/upload/girls', {
+		let raw  = await fetch(`/upload/girls/${ext}`, {
 			method: 'POST',
 			body: file
 		})

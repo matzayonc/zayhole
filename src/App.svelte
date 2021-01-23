@@ -3,6 +3,7 @@
 	import { Router, Route } from "svelte-routing"
     import Main from './routes/Main.svelte'
     import About from './routes/About.svelte'
+    import Upload from './routes/Upload.svelte'
 
 	function login(login: string, password: string){
 		console.log('tried to login')
@@ -18,6 +19,7 @@
 
 <Router>
 	<Navbar loginCallback={login}/>
+	<Route path="/upload" component="{Upload}" />
 	<Route path="/about" component="{About}" />
 	<Route path="/" component="{Main}" />
 </Router>

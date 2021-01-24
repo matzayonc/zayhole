@@ -2,6 +2,7 @@
 	import { Link } from 'svelte-routing'
     import Login from './Login.svelte';
 
+    let loggedIn: boolean
 </script>
 
 
@@ -10,7 +11,11 @@
         <Link to='/'>Home</Link>
         <Link to='about'>About</Link>
     </div>
-    <Login text='Login'/>
+    {#if !loggedIn}
+        <Login bind:loggedIn={loggedIn}/>
+    {:else}
+        <div id='profil'>Profil</div>
+    {/if}
 
 
 </nav>
@@ -28,6 +33,13 @@
         cursor: pointer 
         user-select: none    
     
+
+        #profil
+            padding: 0 10px
+            background-color: $hoverColor
+            border-radius: $barHeight/2
+            color: $textColor
+
         .links
             flex: 1
             display: flex
@@ -40,5 +52,7 @@
 
                 &:hover
                     background-color: $hoverColor
+
+       
     
 </style>

@@ -1,7 +1,7 @@
 import {server} from '../data.json'
 
 export async function login(login:string, passwd:string):Promise<boolean>{
-    const data = { name: login, passwd: passwd }
+    const data = {passwd: passwd, remember:true }
     let answer
     console.log('sending')
 

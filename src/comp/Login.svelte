@@ -1,7 +1,6 @@
 <script lang='ts'>
+    export let loggedIn = false
     import { navigate } from 'svelte-routing'
-    export let text = 'Login'
-    export let callback: (login: string, password: string) => boolean
     import {server} from '../data.json'
     import {login} from '../modules/login'
 
@@ -23,9 +22,15 @@
             firstTry = false
             return
         } 
-   
 
-        login(username, passwd).then(result => firstTry = result)
+        login(username, passwd).then(result => {
+            if(result){
+                loggedIn = true
+                visible = false
+            }
+            else
+                firstTry = false
+        })
     }
 
     function goToRegister(e:Event){
@@ -35,7 +40,7 @@
 </script>
 
 
-<div id='login-toggle' on:click={()=>visible = !visible}>{text}</div>
+<div id='login-toggle' on:click={()=>visible = !visible}>Login</div>
 
 {#if visible}
     <div id='login-popup'>

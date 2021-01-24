@@ -42,3 +42,11 @@
 <input type='password' placeholder='repeat password' bind:value={confirm}><br>
 <input type='submit' value='register' on:click={submit}>
 
+<style lang='sass'>
+    input
+        font-size: 16px
+        padding: 0.4em
+        margin: 0.2em 3px
+        border: 1px solid #ccc
+        border-radius: 2px
+</style>

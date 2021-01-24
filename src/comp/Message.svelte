@@ -2,14 +2,15 @@
 export let sender:string
 export let recipient:string
 export let content:string
-export let time:string
+export let timestamp:string
+export let status= 'default'
 
 
 </script>
 
 
 <section>
-    <p>{content}</p>
+    <p class={status}>{content}</p>
 </section>
 
 <style lang="sass">
@@ -24,5 +25,12 @@ export let time:string
             border-radius: 5px
             background-color: lightblue
             width: auto
+
+            &.send
+                opacity: .6
+
+            &.err
+                opacity: .6
+                border: 2px solid red
 
 </style>

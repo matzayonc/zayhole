@@ -62,6 +62,8 @@
         border-radius: $barHeight/2
         color: $textColor
 
+
+
     #login-popup
         margin-left: calc(50vw - 240px)
         position: absolute
@@ -78,9 +80,11 @@
             margin-top: 5px
 
         input
-            padding: 2px
-            box-sizing: content-box
+            font-size: 16px
+            padding: 0.4em
+            margin: 0.2em 3px
             border: 3px solid $primaryColor
+            border-radius: 5px
 
 
             &.wrong
@@ -89,12 +93,16 @@
 
 
         button
+            font-size: 18px
             float: right
-            border-radius: 5px
-            padding: 2px
+            border-radius: 10px
+            padding: 5px
             border-width: 0
             color: $textColor
             background-color: $hoverColor
+
+        a
+            color: $textColor
 
 
 </style>

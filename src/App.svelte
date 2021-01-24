@@ -5,6 +5,7 @@ import Main from './routes/Main.svelte'
 import About from './routes/About.svelte'
 import Upload from './routes/Upload.svelte'
 import Register from './routes/Register.svelte';
+import Chat from './routes/Chat.svelte';
 
 
 
@@ -20,6 +21,7 @@ import Register from './routes/Register.svelte';
 	<Route path="/upload" component="{Upload}" />
 	<Route path="/about" component="{About}" />
 	<Route path="/register" component="{Register}" />
+	<Route path="/chat" component="{Chat}" />
 	<Route path="/" component="{Main}" />
 </Router>
 

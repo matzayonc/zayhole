@@ -1,7 +1,6 @@
 <script lang='ts'>
 	import { Link } from 'svelte-routing'
     import Login from './Login.svelte';
-    export let loginCallback: (login: string, password: string) => boolean
 
 </script>
 
@@ -11,7 +10,7 @@
         <Link to='/'>Home</Link>
         <Link to='about'>About</Link>
     </div>
-    <Login callback={loginCallback} text='Login'/>
+    <Login text='Login'/>
 
 
 </nav>

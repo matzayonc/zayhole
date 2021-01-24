@@ -1,32 +1,36 @@
 <script lang='ts'>
-    import { Link } from 'svelte-routing'
+    import { navigate } from 'svelte-routing'
     export let text = 'Login'
     export let callback: (login: string, password: string) => boolean
     import {server} from '../data.json'
+    import {login} from '../modules/login'
 
 
     interface loginData{
-        login: string,
+        username: string,
         passwd: string
     }
 
-    let data = {login: '', passwd: ''}
+    let data = {username: '', passwd: ''}
     
     let firstTry = true
     let visible = false
 
     function check(){
-        let {login, passwd} = data
+        let {username, passwd} = data
 
-        if(login == '' || passwd == ''){
+        if(username == '' || passwd == ''){
             firstTry = false
             return
         } 
    
 
-        firstTry = callback(login, passwd)
+        login(username, passwd).then(result => firstTry = result)
+    }
 
-
+    function goToRegister(e:Event){
+        visible = false
+        navigate('/register')
     }
 </script>
 
@@ -36,9 +40,9 @@
 {#if visible}
     <div id='login-popup'>
         <h2>Login</h2>
-        <input bind:value={data.login} type="text"/> <br/>
+        <input bind:value={data.username} type="text"/> <br/>
         <input bind:value={data.passwd} type="password" class={firstTry ? '' : 'wrong'}/> <br/>
-        <Link to='about'>Register</Link>
+        <a href='register' on:click|preventDefault={goToRegister}>Register</a>
         <button on:click={check}>Login</button>
     </div>     
 {/if}

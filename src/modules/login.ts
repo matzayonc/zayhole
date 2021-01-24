@@ -1,18 +1,12 @@
 import {server} from '../data.json'
 
-interface Check {
-    login: boolean
-    password: boolean
-}
-
-
 export async function login(login:string, passwd:string):Promise<boolean>{
     const data = { name: login, passwd: passwd }
     let answer
     console.log('sending')
 
     try {
-        answer = await fetch(`/login`, {
+        answer = await fetch(`/login/${login}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data),
@@ -26,13 +20,35 @@ export async function login(login:string, passwd:string):Promise<boolean>{
     return answer.success
 }
 
+export async function register(login:string, passwd:string):Promise<string>{
+    const data = { name: login, passwd: passwd }
+    let answer
+    console.log('sending')
 
-export function check(login:string, passwd:string): Check{
-    let validLogin = true
-    let validPassword = true
+    try {
+        answer = await fetch(`/register/${login}`, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
 
-    validLogin /*&&*/= login != ''
-    validLogin /*&&*/= login.length <= 20
+        
+            
+    } catch (error) {
+        console.log('answer')
+        return 'fetch error'
+    }
+    if(answer.success)
+        return 'ok'
+    else
+        return 'couldn\'t create'
+}
 
-    return {login: validLogin, password: validPassword}
+export function validateUsername(name:string):boolean{
+    return name != '' && name.length <= 20
+}
+
+export function validatePassword(pass:string):boolean{
+    return pass.length >= 1 && pass.length <= 64 
 }

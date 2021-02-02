@@ -10,6 +10,7 @@
     <div class='links'>
         <Link to='/'>Home</Link>
         <Link to='about'>About</Link>
+        <Link to='chat'>Chat</Link>
     </div>
     {#if !loggedIn}
         <Login bind:loggedIn={loggedIn}/>

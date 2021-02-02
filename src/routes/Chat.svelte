@@ -13,7 +13,7 @@ import {send, load} from '../modules/chat'
         content: string,
         sender: string,
         recipient: string
-        timestamp?: string
+        time?: string
         status?: string
     }
 
@@ -50,14 +50,13 @@ import {send, load} from '../modules/chat'
         } catch (err) {
             console.error(err)
         }
-
-        console.log(messages)
     }
 
     function findLastTimestamp():string|undefined{
+
         for(let i = messages.length-1; i > 0; i--)
-            if(messages[i].timestamp)
-                return messages[i].timestamp
+            if(messages[i].time)
+                return messages[i].time
 
         return undefined
     }

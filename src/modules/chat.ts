@@ -20,8 +20,6 @@ export async function send(m: MessageStructure):Promise<string> {
 
 export async function load(sender:string, recipient:string, since?:string):Promise<MessageStructure[]> {
 
-
-    console.log('a')
     const res =  await fetch(`/message/${sender}/${recipient}?since=${since ?? ''}`, {
         //method: 'GET',
         //headers: {'Content-Type': 'application/json'},
@@ -34,6 +32,6 @@ export async function load(sender:string, recipient:string, since?:string):Promi
         content: i.content,
         sender: sender,
         recipient: recipient,
-        timestamp: i.timestamp,
+        time: i.time,
     }})
 }

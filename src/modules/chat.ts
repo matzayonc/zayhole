@@ -1,26 +1,25 @@
 export interface MessageStructure{
     content: string,
     sender: string,
-    recipient: string
+    convo: string
     timestamp?: string
     status?: string
 }
 
 export async function send(m: MessageStructure):Promise<string> {
 
-    const res =  await fetch(`/message/${m.sender}/${m.recipient}`, {
+    const res =  await fetch(`/message/global/${m.sender}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(m),
     }).then(res => res.json())
-
 
     return res
 }
 
 export async function load(sender:string, recipient:string, since?:string):Promise<MessageStructure[]> {
 
-    const res =  await fetch(`/message/${sender}/${recipient}?since=${since ?? ''}`, {
+    const res =  await fetch(`/messages/global?since=${since ?? ''}`, {
         //method: 'GET',
         //headers: {'Content-Type': 'application/json'},
         //body: JSON.stringify({timestamp: since}),
@@ -28,10 +27,11 @@ export async function load(sender:string, recipient:string, since?:string):Promi
 
     if(!res.success) return []
 
+    console.log(res)
+
     return res.messages.map(i=>{return {
         content: i.content,
-        sender: sender,
-        recipient: recipient,
-        time: i.time,
+        sender: i.sender,
+        time: i.ts,
     }})
 }

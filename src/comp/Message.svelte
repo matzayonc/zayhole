@@ -1,6 +1,5 @@
 <script lang="ts">
 export let sender:string
-export let recipient:string
 export let content:string
 export let time:string
 export let status= 'default'
@@ -10,7 +9,7 @@ export let status= 'default'
 
 
 <section>
-    <p class={status}>{content} @{time}</p>
+    <p class={status}>{content} {sender}@{time}</p>
 </section>
 
 <style lang="sass">

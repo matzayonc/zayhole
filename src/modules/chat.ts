@@ -8,7 +8,7 @@ export interface MessageStructure{
 
 export async function send(m: MessageStructure):Promise<string> {
 
-    const res =  await fetch(`/message/global/${m.sender}`, {
+    const res =  await fetch(`/messages/global/${m.sender}`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(m),

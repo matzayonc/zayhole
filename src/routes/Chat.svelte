@@ -12,7 +12,7 @@ import {send, load} from '../modules/chat'
     interface MessageStructure{
         content: string,
         sender: string,
-        recipient: string
+        convo: string
         time?: string
         status?: string
     }
@@ -27,7 +27,7 @@ import {send, load} from '../modules/chat'
         let mess = {
             content: text,
             sender: sender,
-            recipient: recipient,
+            convo: recipient,
             status: 'send'
         }
         const id = messages.length
@@ -36,7 +36,7 @@ import {send, load} from '../modules/chat'
         shouldScroll = true
 
 
-        send(mess).then(res => messages[id].status = '')
+        send(mess).then(res => messages[id].status = 'send')
         .catch(err => {
             messages[id].status = 'err'
             console.error(err)
@@ -45,7 +45,17 @@ import {send, load} from '../modules/chat'
 
     async function getMessages(){
         try {
-            messages = messages.concat(await load(sender, recipient, findLastTimestamp()));
+            const fresh:MessageStructure[] = await load(sender, recipient, findLastTimestamp()) 
+            while(messages.length){
+
+                const last = messages[messages.length - 1]
+
+                if(last.status == 'send' || JSON.stringify(last) == JSON.stringify(fresh[0]))
+                    messages.pop()
+                else break
+            }
+
+            messages = messages.concat(fresh);
             shouldScroll = true
         } catch (err) {
             console.error(err)
@@ -67,7 +77,7 @@ import {send, load} from '../modules/chat'
 
     onMount(async () => {
         await getMessages()
-        setInterval(getMessages, 2000)
+        setInterval(getMessages, 500)
     })
 
     afterUpdate(() => {if(shouldScroll) scrollToBottom()})

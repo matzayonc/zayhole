@@ -1,20 +1,24 @@
 <script lang="ts">
     export let sender:string
     export let content:string
-    export let time:string
+    export let time:string = undefined
     export let status= 'default'
 
     import TimeAgo from 'javascript-time-ago'
 
     const ago = new TimeAgo()
-    const date = new Date(time.split(' ').join('T') + '.000Z')
     
+
+    $: isoTime = time ? time.split(' ').join('T') + '.000Z' : time
+    $: when = time ? ago.format(new Date(isoTime)) : 'just now'
+
+    setInterval(()=>when=time ? ago.format(new Date(isoTime)) : 'just now', 10000)
 
 </script>
 
 
 <section>
-    <p class={status}>{content} {sender}@{ago.format(date)}</p>
+    <p class={status}>{content} {sender}@{when}</p>
 </section>
 
 <style lang="sass">

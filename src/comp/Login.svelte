@@ -1,8 +1,8 @@
 <script lang='ts'>
 export let loggedIn = false
 import { navigate } from 'svelte-routing'
-import {server} from '../data.json'
-import {login} from '../modules/login'
+import { server } from '../data.json'
+import { login } from '../modules/login'
 
 
     interface loginData{

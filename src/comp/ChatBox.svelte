@@ -1,4 +1,5 @@
 <script lang='ts'>
+    export const updateFreq = 200
     import {onMount, afterUpdate} from 'svelte';
     import Message from '../comp/Message.svelte'
     import {send, load} from '../modules/chat'
@@ -28,6 +29,8 @@
             convo: recipient,
             status: 'send'
         }
+
+        setTimeout(()=>text = '', 0)
         const id = messages.length
         messages.push(mess)
         messages = messages
@@ -75,7 +78,7 @@
 
     onMount(async () => {
         await getMessages()
-        setInterval(getMessages, 500)
+        setInterval(getMessages, updateFreq)
     })
 
     afterUpdate(() => {if(shouldScroll) scrollToBottom()})
@@ -100,7 +103,11 @@
         </section>
         
         <div>
-            <textarea bind:value={text} placeholder='Your message' draggable=false/>
+            <textarea 
+                bind:value={text}  
+                on:keydown={e=>{if(e.key == 'Enter') sendMessage()}} 
+                placeholder='Your message' draggable=false
+            />
             <br/>
             <button on:click={sendMessage}>Send</button> 
         </div>
@@ -113,7 +120,7 @@
     @import '../style/Vars'
 
     #outer
-        height: calc(100vh - 250px)
+        height: 100%
 
         h1
             margin: 5px

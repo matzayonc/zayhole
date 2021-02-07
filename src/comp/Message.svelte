@@ -1,8 +1,8 @@
 <script lang="ts">
-export let sender:string
-export let content:string
-export let time:string
-export let status= 'default'
+    export let sender:string
+    export let content:string
+    export let time:string
+    export let status= 'default'
 
 
 </script>
@@ -21,7 +21,7 @@ export let status= 'default'
             display: inline
             padding: 3px 10px
             font-size: 16px
-            border-radius: 5px
+            border-radius: 7px
             background-color: lightblue
             width: auto
 

@@ -27,8 +27,6 @@ export async function load(sender:string, recipient:string, since?:string):Promi
 
     if(!res.success) return []
 
-    console.log(res)
-
     return res.messages.map(i=>{return {
         content: i.content,
         sender: i.sender,

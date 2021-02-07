@@ -13,6 +13,6 @@
     @import '../style/Vars'
 
     div
-        height: 100px
+        height: calc(100vh - 50px)
 
 </style>

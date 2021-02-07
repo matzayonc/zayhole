@@ -8,6 +8,10 @@ import Register from './routes/Register.svelte';
 import Chat from './routes/Chat.svelte';
 
 
+import TimeAgo from 'javascript-time-ago'
+import EnglishTimeAgo from 'javascript-time-ago/locale/en'
+
+    TimeAgo.addDefaultLocale(EnglishTimeAgo)
 
 </script>
 

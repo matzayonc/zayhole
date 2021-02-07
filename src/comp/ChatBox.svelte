@@ -47,6 +47,8 @@
     async function getMessages(){
         try {
             const fresh:MessageStructure[] = await load(sender, recipient, findLastTimestamp()) 
+            if(fresh.length == 1) return
+
             while(messages.length){
 
                 const last = messages[messages.length - 1]

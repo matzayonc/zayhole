@@ -27,6 +27,7 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
+    "javascript-time-ago": "^2.3.4",
     "sirv-cli": "^1.0.0"
   }
 }

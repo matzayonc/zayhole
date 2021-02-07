@@ -1,4 +1,5 @@
 dependencies:
+  javascript-time-ago: 2.3.4
   sirv-cli: 1.0.11
 devDependencies:
   '@rollup/plugin-commonjs': 16.0.0_rollup@2.38.5
@@ -466,6 +467,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-U82MsXXiFIrjCK4otLT+o2NA2Cd2g5MLoOVXUZjIOhLurrRxpEXzI8O0KZHr3IjLvlAH1kTPYSuqer5T9ZVBKQ==
+  /javascript-time-ago/2.3.4:
+    dependencies:
+      relative-time-format: 1.0.5
+    dev: false
+    resolution:
+      integrity: sha512-Tmy9C4MBGtC19AYhV8updznKqtiRSwJHIbDMeypsy3F0vxqgX5ytln4jwXRLVh82WW6ig4VGegi/Qhykpr4YQw==
   /jest-worker/26.6.2:
     dependencies:
       '@types/node': 14.14.25
@@ -601,6 +608,10 @@ packages:
       node: '>=8.10.0'
     resolution:
       integrity: sha512-cMhu7c/8rdhkHXWsY+osBhfSy0JikwpHK/5+imo+LpeasTF8ouErHrlYkwT0++njiyuDvc7OFY5T3ukvZ8qmFQ==
+  /relative-time-format/1.0.5:
+    dev: false
+    resolution:
+      integrity: sha512-MAgx/YKcUQYJpIaWcfetPstElnWf26JxVis4PirdwVrrymFdbxyCSm6yENpfB1YuwFbtHSHksN3aBajVNxk10Q==
   /require-relative/0.8.7:
     dev: true
     resolution:
@@ -925,6 +936,7 @@ specifiers:
   '@rollup/plugin-node-resolve': ^10.0.0
   '@rollup/plugin-typescript': ^6.0.0
   '@tsconfig/svelte': ^1.0.0
+  javascript-time-ago: ^2.3.4
   rollup: ^2.3.4
   rollup-plugin-css-only: ^3.0.0
   rollup-plugin-livereload: ^2.0.0

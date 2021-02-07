@@ -4,12 +4,17 @@
     export let time:string
     export let status= 'default'
 
+    import TimeAgo from 'javascript-time-ago'
+
+    const ago = new TimeAgo()
+    const date = new Date(time.split(' ').join('T') + '.000Z')
+    
 
 </script>
 
 
 <section>
-    <p class={status}>{content} {sender}@{time}</p>
+    <p class={status}>{content} {sender}@{ago.format(date)}</p>
 </section>
 
 <style lang="sass">

@@ -1,8 +1,7 @@
 <script lang='ts'>
-export let loggedIn = false
 import { navigate } from 'svelte-routing'
-import { server } from '../data.json'
 import { login } from '../modules/login'
+import { user } from '../modules/stores'
 
 
     interface loginData{
@@ -25,7 +24,7 @@ import { login } from '../modules/login'
 
         login(username, passwd).then(result => {
             if(result){
-                loggedIn = true
+                user.update(u => { return { ...u , loggedIn: true }})
                 visible = false
             }
             else

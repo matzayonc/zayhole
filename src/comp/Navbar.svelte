@@ -1,8 +1,7 @@
 <script lang='ts'>
 	import { Link } from 'svelte-routing'
     import Login from './Login.svelte';
-
-    let loggedIn: boolean
+    import { user } from '../modules/stores'
 </script>
 
 
@@ -12,8 +11,8 @@
         <Link to='about'>About</Link>
         <Link to='chat'>Chat</Link>
     </div>
-    {#if !loggedIn}
-        <Login bind:loggedIn={loggedIn}/>
+    {#if !$user.loggedIn}
+        <Login/>
     {:else}
         <div id='profil'>Profil</div>
     {/if}

@@ -17,9 +17,7 @@
     }
 
     let messages: MessageStructure[] = []
-
     let shouldScroll = false
-
     let text = ''
 
     function sendMessage(){
@@ -47,7 +45,7 @@
     async function getMessages(){
         try {
             const fresh:MessageStructure[] = await load(sender, recipient, findLastTimestamp()) 
-            if(fresh.length == 1) return
+            if(fresh.length == 1 && messages.length) return
 
             while(messages.length){
 
@@ -60,6 +58,7 @@
 
             messages = messages.concat(fresh);
             shouldScroll = true
+            console.log(messages, fresh)
         } catch (err) {
             console.error(err)
         }
@@ -73,10 +72,6 @@
 
         return undefined
     }
-
-    messages = messages
-    shouldScroll = true
-
 
     onMount(async () => {
         await getMessages()

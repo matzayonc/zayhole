@@ -25,7 +25,7 @@ export async function load(sender:string, recipient:string, since?:string):Promi
         //body: JSON.stringify({timestamp: since}),
     }).then(res => res.json())
 
-    if(!res.success) return []
+    if(!res.success) throw 'getting messages failed'
 
     return res.messages.map(i=>{return {
         content: i.content,

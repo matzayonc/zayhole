@@ -1,12 +1,13 @@
-import {server} from '../data.json'
+import { server } from '../data.json'
+import { user } from './stores'
 
-export async function login(login:string, passwd:string):Promise<boolean>{
-    const data = {passwd: passwd, remember:true }
+export async function login(username:string, password:string):Promise<boolean>{
+    const data = {passwd: password, remember:true }
     let answer
     console.log('sending')
 
     try {
-        answer = await fetch(`/login/${login}`, {
+        answer = await fetch(`/login/${username}`, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data),
@@ -16,6 +17,14 @@ export async function login(login:string, passwd:string):Promise<boolean>{
         console.log('answer')
         return false
     }
+
+    if(answer.success)                
+        user.update(u => { return { 
+            ...u,
+            loggedIn: true,
+            name: username
+        }})
+
 
     return answer.success
 }

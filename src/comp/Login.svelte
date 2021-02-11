@@ -24,7 +24,6 @@ import { user } from '../modules/stores'
 
         login(username, passwd).then(result => {
             if(result){
-                user.update(u => { return { ...u , loggedIn: true }})
                 visible = false
             }
             else

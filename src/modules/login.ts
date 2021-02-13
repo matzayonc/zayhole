@@ -11,6 +11,7 @@ export async function login(username:string, password:string):Promise<boolean>{
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data),
+                credentials: "same-origin"
             })
             .then(response => response.json())
     } catch (error) {
@@ -19,11 +20,7 @@ export async function login(username:string, password:string):Promise<boolean>{
     }
 
     if(answer.success)                
-        user.update(u => { return { 
-            ...u,
-            loggedIn: true,
-            name: username
-        }})
+        updateStore(username)
 
 
     return answer.success
@@ -39,6 +36,7 @@ export async function register(login:string, passwd:string):Promise<string>{
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(data),
+                credentials: "same-origin"
             })
             .then(response => response.json())
 
@@ -54,10 +52,28 @@ export async function register(login:string, passwd:string):Promise<string>{
         return 'couldn\'t create'
 }
 
+export async function tryToLoginWithToken(){
+    interface Answer{success: boolean, username: string}
+    const answer = await fetch(`/token`).then(res => res.json()) as Answer
+    
+    console.log(answer)
+    if(answer.success)
+        updateStore(answer.username)
+}
+
+
 export function validateUsername(name:string):boolean{
     return name != '' && name.length <= 20
 }
 
 export function validatePassword(pass:string):boolean{
     return pass.length >= 1 && pass.length <= 64 
+}
+
+function updateStore(username: string){
+    user.update(u => { return { 
+        ...u,
+        loggedIn: true,
+        name: username
+    }})
 }

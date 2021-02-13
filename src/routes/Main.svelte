@@ -25,4 +25,7 @@
         background-color: lightblue
         width: 800px
         margin: auto
+        padding: 22px
+        font-size: 18px
+        line-height: 26px
 </style>

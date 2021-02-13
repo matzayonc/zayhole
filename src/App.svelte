@@ -1,16 +1,18 @@
 <script lang="ts">
-import Navbar from './comp/Navbar.svelte'
-import { Router, Route } from "svelte-routing"
-import Main from './routes/Main.svelte'
-import About from './routes/About.svelte'
-import Upload from './routes/Upload.svelte'
-import Register from './routes/Register.svelte';
-import Chat from './routes/Chat.svelte';
+	import Navbar from './comp/Navbar.svelte'
+	import { Router, Route } from "svelte-routing"
+	import Main from './routes/Main.svelte'
+	import About from './routes/About.svelte'
+	import Upload from './routes/Upload.svelte'
+	import Register from './routes/Register.svelte';
+	import Chat from './routes/Chat.svelte';
 
 
-import TimeAgo from 'javascript-time-ago'
-import EnglishTimeAgo from 'javascript-time-ago/locale/en'
+	import TimeAgo from 'javascript-time-ago'
+	import EnglishTimeAgo from 'javascript-time-ago/locale/en'
+	import {tryToLoginWithToken} from './modules/login'
 
+	(async() => await tryToLoginWithToken())()
     TimeAgo.addDefaultLocale(EnglishTimeAgo)
 
 </script>

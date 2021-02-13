@@ -1,4 +1,6 @@
 <script lang="ts">
+    import {user} from '../modules/stores'
+
     export let sender:string
     export let content:string
     export let time:string = undefined
@@ -18,7 +20,11 @@
 
 
 <section>
-    <p class={status}>{content} {sender}@{when}</p>
+    <p 
+    class={status}
+    class:own={sender == $user.name}>
+        {content} {sender}@{when}
+    </p>
 </section>
 
 <style lang="sass">
@@ -27,7 +33,7 @@
         padding: 3px
 
         p
-            display: inline
+            display: inline-block
             padding: 3px 10px
             font-size: 16px
             border-radius: 7px
@@ -40,5 +46,9 @@
             &.err
                 opacity: .6
                 border: 2px solid red
+            
+            &.own
+                clear: both
+                float: right
 
 </style>

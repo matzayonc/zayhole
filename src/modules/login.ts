@@ -26,6 +26,15 @@ export async function login(username:string, password:string):Promise<boolean>{
     return answer.success
 }
 
+export async function logout(){
+    const res = await fetch(`/logout`, {
+        method: 'POST',
+        credentials: "same-origin"
+    }).then(res => res.json()) as {success:boolean}
+
+    return res.success
+}
+
 export async function register(login:string, passwd:string):Promise<string>{
     const data = { name: login, passwd: passwd }
     let answer

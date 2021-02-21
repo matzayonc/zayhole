@@ -12,6 +12,7 @@
 	import TimeAgo from 'javascript-time-ago'
 	import EnglishTimeAgo from 'javascript-time-ago/locale/en'
 	import {tryToLoginWithToken} from './modules/login'
+	import Profile from './routes/Profile.svelte';
 
 	(async() => await tryToLoginWithToken())()
     TimeAgo.addDefaultLocale(EnglishTimeAgo)
@@ -25,6 +26,7 @@
 
 <Router>
 	<Navbar/>
+	<Route path="/profile" component="{Profile}" />
 	<Route path="/shortener" component="{Shortener}" />
 	<Route path="/upload" component="{Upload}" />
 	<Route path="/about" component="{About}" />

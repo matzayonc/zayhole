@@ -14,7 +14,7 @@
     {#if !$user.loggedIn}
         <Login/>
     {:else}
-        <div id='profil'>Profil</div>
+        <a href='/profile' id='profile'>Profil</a>
     {/if}
 
 
@@ -34,11 +34,12 @@
         user-select: none    
     
 
-        #profil
+        #profile
             padding: 0 10px
             background-color: $hoverColor
             border-radius: $barHeight/2
             color: $textColor
+            text-decoration: none
 
         .links
             flex: 1

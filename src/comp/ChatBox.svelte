@@ -48,17 +48,16 @@
             if(fresh.length == 1 && messages.length) return
 
             while(messages.length){
-
                 const last = messages[messages.length - 1]
 
-                if(last.status == 'send' || JSON.stringify(last) == JSON.stringify(fresh[0]))
+                if(last.status == 'send' || fresh.findIndex(i => JSON.stringify(last) == JSON.stringify(i)) != -1)
                     messages.pop()
                 else break
             }
 
             messages = messages.concat(fresh);
             shouldScroll = true
-            console.log(messages, fresh)
+            //console.log(messages, fresh)
         } catch (err) {
             console.error(err)
         }

@@ -1,10 +1,13 @@
 <script>
     export let location = undefined
     location = location
-    import {logout} from '../modules/login.ts' 
+    import { logout } from '../modules/login.ts' 
+    import { navigate } from 'svelte-routing'
+
 
     async function sendLogout(){
-        console.log(await logout())
+        await logout()
+        navigate('/')
     }
 
 </script>

@@ -32,6 +32,8 @@ export async function logout(){
         credentials: "same-origin"
     }).then(res => res.json()) as {success:boolean}
 
+    user.set({loggedIn: false, name:''})
+
     return res.success
 }
 

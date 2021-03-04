@@ -22,7 +22,6 @@ export async function login(username:string, password:string):Promise<boolean>{
     if(answer.success)                
         updateStore(username)
 
-
     return answer.success
 }
 

@@ -17,9 +17,9 @@ export async function send(m: MessageStructure):Promise<string> {
     return res
 }
 
-export async function load(sender:string, recipient:string, since?:string):Promise<MessageStructure[]> {
+export async function load(sender:string, convo:string, since?:string):Promise<MessageStructure[]> {
 
-    const res =  await fetch(`/messages/global?since=${since ?? ''}`, {
+    const res =  await fetch(`/messages/${convo}?since=${since ?? ''}`, {
         //method: 'GET',
         //headers: {'Content-Type': 'application/json'},
         //body: JSON.stringify({timestamp: since}),

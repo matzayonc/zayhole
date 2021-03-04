@@ -1,12 +1,11 @@
 <script lang='ts'>
     export const updateFreq = 200
+    export const conversation = 'global'
     import {onMount, afterUpdate} from 'svelte';
     import Message from '../comp/Message.svelte'
     import {send, load} from '../modules/chat'
+    import {user} from '../modules/stores'
 
-
-    const sender = 'a'
-    const recipient = 'a'
 
     interface MessageStructure{
         content: string,
@@ -23,8 +22,8 @@
     function sendMessage(){
         let mess = {
             content: text,
-            sender: sender,
-            convo: recipient,
+            sender: $user.name,
+            convo: conversation,
             status: 'send'
         }
 
@@ -44,23 +43,25 @@
 
     async function getMessages(){
         try {
-            const fresh:MessageStructure[] = await load(sender, recipient, findLastTimestamp()) 
-            if(fresh.length == 1 && messages.length) return
+            const fresh:MessageStructure[] = await load($user.name, conversation, findLastTimestamp()) 
+            if(fresh.length > 1 || !messages.length){
+                while(messages.length){
+                    const last = messages[messages.length - 1]
 
-            while(messages.length){
-                const last = messages[messages.length - 1]
+                    if(last.status == 'send' || fresh.findIndex(i => JSON.stringify(last) == JSON.stringify(i)) != -1)
+                        messages.pop()
+                    else break
+                }
 
-                if(last.status == 'send' || fresh.findIndex(i => JSON.stringify(last) == JSON.stringify(i)) != -1)
-                    messages.pop()
-                else break
-            }
+                messages = messages.concat(fresh);
+                shouldScroll = true
+            }   
 
-            messages = messages.concat(fresh);
-            shouldScroll = true
-            //console.log(messages, fresh)
         } catch (err) {
             console.error(err)
         }
+
+        setTimeout(getMessages, updateFreq)
     }
 
     function findLastTimestamp():string|undefined{
@@ -74,7 +75,6 @@
 
     onMount(async () => {
         await getMessages()
-        setInterval(getMessages, updateFreq)
     })
 
     afterUpdate(() => {if(shouldScroll) scrollToBottom()})
